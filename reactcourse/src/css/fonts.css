@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'MontHeavy';
+    src: url(./fonts/mont/Mont-HeavyDEMO.otf);
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: 'MontLight';
+    src: url(./fonts/mont/Mont-ExtraLightDEMO.otf);
+  }
+
+  @font-face {
+    font-family: 'Mont';
+    src: url(./fonts/mont/Mont-Regular.ttf);
+    font-weight: 400;
+  }

@@ -1,0 +1,59 @@
+@import url('./fonts.css');
+@import url('./buttons.css');
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 744px;
+    height: 1620px;
+    margin: auto;
+    background: #E5E5E5;
+    border-radius: 20px;
+    font-family: 'Mont';
+    font-size: 20px;
+    line-height: 25.56px;
+}
+
+form input {
+    border-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    width: 539px;
+    height: 51px;
+    margin-bottom: 20px;
+    font-family: 'Mont';
+    font-size: 20px;
+    line-height: 25.56px;
+    padding-left: 21px;
+    padding-right: 21px;
+}
+
+form textarea {
+    border: 4px, solid;
+    border-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    width: 581px;
+    height: 200px;
+    margin-bottom: 20px;
+    resize: none;
+}
+
+form label {
+    align-self: start;
+    margin-left: 81px;
+    margin-bottom: 5px;
+}
+
+input::placeholder {
+    font-family: 'MontLight';
+    font-size: 16px;
+    line-height: 100%;
+}
+
+textarea::placeholder {
+    font-family: 'MontLight';
+    font-size: 16px;
+    line-height: 100%;
+    padding-left: 21px;
+    padding-top: 16px;
+}
