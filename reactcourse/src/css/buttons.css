@@ -1,0 +1,20 @@
+form button {
+    width: 166px;
+    height: 54px;
+    border-color: rgba(55, 55, 55, 1);
+    border: 1px, solid;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 20.45px;
+}
+
+.buttons {
+  margin-top: 56px;
+}
+
+#buttonSave {
+    color: white;
+    width: 389px;
+    background-color: rgba(55, 55, 55, 1);
+    margin-left: 26px;
+}
