@@ -18,7 +18,7 @@ class Form extends React.Component {
           <TextAreaComponent name = 'about' descprition = 'О себе' />
           <TextAreaComponent name = 'steck' descprition = 'Стек технологий' />
           <TextAreaComponent name = 'lastProject' descprition = 'Описание последнего проекта' />
-          <div className='Buttons'>
+          <div className='buttons'>
             <ButtonComponent name = 'cancel' descprition = 'Отмена' />
             <ButtonComponent name = 'save' descprition = 'Сохранить' />
           </div>
