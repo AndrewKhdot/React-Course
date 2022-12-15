@@ -21,16 +21,17 @@ class App extends React.Component {
       else {
         return(
           <div>
-            <CompletedForm />
+            <CompletedForm al = {this.state.xoxo}/>
           </div>
         )
       }
     }
 
-    complete() {
+    complete(user) {
       this.setState(
         {
-          isComplete : true
+          isComplete : true,
+          xoxo: user
         }
       ) 
     }
