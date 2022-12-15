@@ -4,8 +4,8 @@ class DateComponent extends React.Component {
     render() {
       return(
         <>
-            <label htmlFor='BirthDate'>{'Дата рождения:'}</label>
-            <input type="date" id = 'BirthDate'></input>
+            <label htmlFor='birthDate'>{'Дата рождения:'}</label>
+            <input type="date" id = 'birthDate'></input>
         </>
       )
     }
