@@ -10,17 +10,17 @@ class Form extends React.Component {
       return(
         <form>
           <h2>Создание анкеты</h2>
-          <TextComponent name = 'Name' descprition = 'Имя'/>
-          <TextComponent name = 'Surname' descprition = 'Фамилия'/>
+          <TextComponent name = 'name' descprition = 'Имя'/>
+          <TextComponent name = 'surname' descprition = 'Фамилия'/>
           <DateComponent />
-          <TextComponent name = 'Phone' descprition = 'Телефон'/>
-          <TextComponent name = 'Site' descprition = 'Сайт'/>
-          <TextAreaComponent name = 'About' descprition = 'О себе' />
-          <TextAreaComponent name = 'Steck' descprition = 'Стек технологий' />
-          <TextAreaComponent name = 'LastProject' descprition = 'Описание последнего проекта' />
+          <TextComponent name = 'phone' descprition = 'Телефон'/>
+          <TextComponent name = 'site' descprition = 'Сайт'/>
+          <TextAreaComponent name = 'about' descprition = 'О себе' />
+          <TextAreaComponent name = 'steck' descprition = 'Стек технологий' />
+          <TextAreaComponent name = 'lastProject' descprition = 'Описание последнего проекта' />
           <div className='Buttons'>
-            <ButtonComponent name = 'Cancel' descprition = 'Отмена' />
-            <ButtonComponent name = 'Save' descprition = 'Сохранить' />
+            <ButtonComponent name = 'cancel' descprition = 'Отмена' />
+            <ButtonComponent name = 'save' descprition = 'Сохранить' />
           </div>
         </form>
       )
