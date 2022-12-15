@@ -5,7 +5,6 @@ import DateComponent from './DateComponent';
 import ButtonComponent from './ButtonComponent';
 
 class Form extends React.Component {
-    
     render() {
       return(
         <form>
