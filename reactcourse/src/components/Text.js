@@ -1,14 +1,14 @@
 import React from 'react';
 
-class TextAreaComponent extends React.Component {
+class Text extends React.Component {
     render() {
       return(
         <>
             <label htmlFor={'input' + this.props.name}>{this.props.descprition + ':'}</label>
-            <textarea placeholder={this.props.descprition} id={'input' + this.props.name}></textarea>
+            <input placeholder={this.props.descprition} id={'input' + this.props.name}></input>
         </>
       )
     }
   }
 
-  export default TextAreaComponent
+  export default Text

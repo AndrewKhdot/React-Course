@@ -1,6 +1,6 @@
 import React from 'react';
 
-class DateComponent extends React.Component {
+class Date extends React.Component {
     render() {
       return(
         <>
@@ -11,4 +11,4 @@ class DateComponent extends React.Component {
     }
   }
 
-  export default DateComponent
+  export default Date
