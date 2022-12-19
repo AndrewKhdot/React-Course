@@ -5,7 +5,8 @@ class Date extends React.Component {
       return(
         <>
             <label htmlFor='birthDate'>{'Дата рождения:'}</label>
-            <input type="date" id = 'birthDate'></input>
+            <input className={this.props.isValid} type="date" id = 'birthDate' onBlur = {(e) => this.props.changeState('dateBirth', e.target.value)}></input>
+            <div>{this.props.message}</div>
         </>
       )
     }

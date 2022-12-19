@@ -34,8 +34,13 @@ form textarea {
     border-color: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     width: 581px;
-    height: 200px;
+    height: 120px;
     margin-bottom: 20px;
+    font-family: 'Mont';
+    font-size: 16px;
+    line-height: 100%;
+    padding-left: 21px;
+    padding-top: 16px;
     resize: none;
 }
 
@@ -55,6 +60,12 @@ textarea::placeholder {
     font-family: 'MontLight';
     font-size: 16px;
     line-height: 100%;
-    padding-left: 21px;
-    padding-top: 16px;
+}
+
+.valid {
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+.notValid {
+    border-color: red;
 }
