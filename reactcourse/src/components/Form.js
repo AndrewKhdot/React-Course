@@ -109,7 +109,7 @@ class Form extends React.Component {
 
     render() {
       return(
-        <form>
+        <form ref = {el => this.myForm = el} >
           <h2>Создание анкеты</h2>
           {this.state.formElements.map(this.creatingElement)}
         </form>
@@ -330,70 +330,73 @@ class Form extends React.Component {
       ]
       if(name === 'save'){
         let startForm = this.state.formElements;
-      for (const key in user) {
-        if (Object.hasOwnProperty.call(user, key)) {
-          if(user[key] === '') {
-            let index = startForm.indexOf(startForm.find(item => item.name === key))
-            startForm[index].isValid = 'notValid';
-            startForm[index].message = 'Поле должно быть заполнено';
-            this.setState(
-              {
-                formElements : startForm
-              }
-            )
-          }
-          else {
-            switch (key) {
-              case 'phone':
-                if(user[key].length < 14) {
-                  let index = startForm.indexOf(startForm.find(item => item.name === key))
-                  startForm[index].isValid = 'notValid';
-                  startForm[index].message = 'Номер телефона должен составлять 9 цифр'
-                  this.setState(
-                  {
-                    formElements : startForm
-                  }
-                )
+        for (const key in user) {
+          if (Object.hasOwnProperty.call(user, key)) {
+            if(user[key] === '') {
+              let index = startForm.indexOf(startForm.find(item => item.name === key))
+              startForm[index].isValid = 'notValid';
+              startForm[index].message = 'Поле должно быть заполнено';
+              this.setState(
+                {
+                  formElements : startForm
                 }
-                else {
+              )
+            }
+            else {
+              switch (key) {
+                case 'phone':
+                  if(user[key].length < 14) {
+                    let index = startForm.indexOf(startForm.find(item => item.name === key))
+                    startForm[index].isValid = 'notValid';
+                    startForm[index].message = 'Номер телефона должен составлять 9 цифр'
+                    this.setState(
+                    {
+                      formElements : startForm
+                    }
+                  )
+                  }
+                  else {
+                    let index = startForm.indexOf(startForm.find(item => item.name === key))
+                    startForm[index].isValid = 'valid';
+                    startForm[index].message = ''
+                    this.setState(
+                    {
+                      formElements : startForm
+                    }
+                  )
+                  }
+                  break;
+              
+                default:
                   let index = startForm.indexOf(startForm.find(item => item.name === key))
                   startForm[index].isValid = 'valid';
                   startForm[index].message = ''
                   this.setState(
-                  {
-                    formElements : startForm
-                  }
-                )
-                }
-                break;
-            
-              default:
-                let index = startForm.indexOf(startForm.find(item => item.name === key))
-                startForm[index].isValid = 'valid';
-                startForm[index].message = ''
-                this.setState(
-                  {
-                    formElements : startForm
-                  }
-                )
-                break;
+                    {
+                      formElements : startForm
+                    }
+                  )
+                  break;
+              }
             }
           }
         }
-      }
-      if(this.state.formElements.find(item => item.isValid === 'notValid') === undefined) {
-        func(user)
-      }
+        if(this.state.formElements.find(item => item.isValid === 'notValid') === undefined) {
+            func(user)
+        }
       }
       else {
-        console.log(name)
+        /* console.log(name)
+        defaultForm = defaultForm.map(elem => elem.isValid = 'valid')
         this.setState(
           {
             formElements: defaultForm
           }
         )
+        console.log(this.state.formElements[0].message); */
+        this.myForm.reset()
+        console.log('reset')
       }
-      
     }
    
   }

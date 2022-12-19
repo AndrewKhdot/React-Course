@@ -42,7 +42,8 @@ class App extends React.Component {
           isComplete : false
         }
       )
-
+      this.render();
+      console.log('hi from app')
     }
   }
   export default App
