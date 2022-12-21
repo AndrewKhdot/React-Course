@@ -102,7 +102,6 @@ class Form extends React.Component {
       },
       resFuncs : []
     }
-    this.inputValidation = this.inputValidation.bind(this)
     this.creatingElement = this.creatingElement.bind(this)
     this.changeUser = this.changeUser.bind(this)
     this.secondValidation = this.secondValidation.bind(this)
@@ -131,114 +130,6 @@ class Form extends React.Component {
             default:
               return <div></div>
         }
-    }
-    inputValidation(target) {
-      let funcVal;
-      switch (target) {
-        case 'name':
-          funcVal = nameValidation;
-          break;
-        case 'surname':
-          funcVal = nameValidation;
-          break;
-        case 'phone':
-            funcVal = phoneValidation;
-            break;
-        case 'site':
-            funcVal = siteValidation;
-            break;
-        default:
-          break;
-      }
-     
-      return funcVal;
-
-      function nameValidation(val) {
-        let value = val.trim();
-        if(value.length === 1) {
-          value = value.toUpperCase();
-        } 
-        if(value.length < 13) {
-          this.setState({
-            message: '',
-            value: value
-          })
-        }
-        else {
-          this.setState({
-            message: 'Имя должно быть не длиннее 13 символов',
-            value: value.slice(0, 12)
-          })
-        }
-      }
-
-      function  phoneValidation(val) {
-        const numbers = '0123456789'
-        if(numbers.includes(val.slice(-1))) {
-          if(val.length === 1) {
-            this.setState({
-              value: '+' + val
-            })
-          } 
-          else if (val.length === 4) {
-            this.setState({
-              value: val.slice(0, 3) + '-' + val.slice(-1)
-            })
-          }
-          else if (val.length === 9) {
-            this.setState({
-              value: val.slice(0, 8) + '-' + val.slice(-1)
-            })
-          }
-          else if (val.length === 12) {
-            this.setState({
-              value: val.slice(0, 11) + '-' + val.slice(-1)
-            })
-          }
-          else if (val.length > 14){
-            this.setState({
-              message: 'Телефон не должен быть длиннее 9 символов',
-              value: val.slice(0, 14)
-            })
-          }
-          else {
-            this.setState({
-              message: '',
-              value: val
-            })
-          }
-        }
-        else {
-          this.setState({
-            message: 'Телефон должен состоять из цифр',
-            value: val.slice(0, val.length -1)
-          })
-        }
- 
-      }
-
-      function  siteValidation(val) {
-        if(val.length > 8) {
-          if(val.slice(0, 8) === 'https://') {
-            this.setState({
-              message: '',
-              value: val
-            })
-          }
-          else {
-            this.setState({
-              message: 'Сайт должен начинаться с https://',
-              value: val
-            })
-          }
-        }
-        else {
-          this.setState({
-            message: '',
-            value: val
-          })
-        }
-      }
     }
 
     changeUser(field, value) {

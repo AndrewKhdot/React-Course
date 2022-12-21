@@ -1,11 +1,9 @@
 import React from 'react';
 
-class Button extends React.Component {
-    render() {
+const Button = (props) => {
       return(
-            <button type='button' id={'button' + this.props.name} onClick= {() => this.props.fAction(this.props.data, this.props.action, this.props.name)}>{this.props.descprition}</button>
+            <button type='button' id={'button' + props.name} onClick= {() => props.fAction(props.data, props.action, props.name)}>{props.descprition}</button>
       )
     }
-  }
 
   export default Button
