@@ -8,6 +8,7 @@ class Text extends React.Component {
         message: '',
         value: ''
       }
+      this.props.resFunc(this.resetValue.bind(this))
     }
     render() {
       return(
@@ -30,6 +31,13 @@ class Text extends React.Component {
     }
     focusEvent() {
       console.log('focus')
+    }
+    resetValue() {
+      this.setState(
+        {
+          value : ''
+        }
+      )
     }
   }
 

@@ -7,6 +7,7 @@ class TextArea extends React.Component {
       message: '',
       value: ''
     }
+    this.props.resFunc(this.resetValue.bind(this))
   }
     render() {
       return(
@@ -44,6 +45,13 @@ class TextArea extends React.Component {
           }
         )
       }
+    }
+    resetValue() {
+      this.setState(
+        {
+          value : ''
+        }
+      )
     }
   }
 

@@ -21,7 +21,7 @@ class App extends React.Component {
       else {
         return(
           <div>
-            <CompletedForm al = {this.state.xoxo}/>
+            <CompletedForm user = {this.state.xoxo}/>
           </div>
         )
       }

@@ -1,8 +1,2 @@
 @import url('./css/form.css');
-
-h2 {
-    font-family: 'Mont';
-    text-align: center;
-    font-size: 36px;
-    line-height: 46px;
-}
+@import url('./css/completedForm.css');

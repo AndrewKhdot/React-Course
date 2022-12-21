@@ -99,28 +99,31 @@ class Form extends React.Component {
         steck : '',
         lastProject : ''
 
-      }
+      },
+      resFuncs : []
     }
     this.inputValidation = this.inputValidation.bind(this)
     this.creatingElement = this.creatingElement.bind(this)
     this.changeUser = this.changeUser.bind(this)
     this.secondValidation = this.secondValidation.bind(this)
+    this.resetFunctions = this.resetFunctions.bind(this)
   }
 
     render() {
       return(
         <form ref = {el => this.myForm = el} >
           <h2>Создание анкеты</h2>
-          {this.state.formElements.map(this.creatingElement)}
+          {this.state.formElements.filter(item => item.type !== 'button').map(this.creatingElement)}
+          <div className='buttons'>{this.state.formElements.filter(item => item.type === 'button').map(this.creatingElement)}</div>
         </form>
       )
     }
     creatingElement(element) {
         switch (element.type) {
           case 'input':
-            return <Text key = {element.id} name = {element.name} descprition = {element.descprition} validation = {this.inputValidation} isValid = {element.isValid} changeState = {this.changeUser} message = {element.message}/>
+            return <Text key = {element.id} name = {element.name} descprition = {element.descprition} validation = {this.inputValidation} resFunc = {this.resetFunctions} isValid = {element.isValid} changeState = {this.changeUser} message = {element.message}/>
           case 'textArea':
-            return <TextArea key = {element.id}  name = {element.name} descprition = {element.descprition} changeState = {this.changeUser} isValid = {element.isValid} message = {element.message}/>
+            return <TextArea key = {element.id}  name = {element.name} descprition = {element.descprition} changeState = {this.changeUser} resFunc = {this.resetFunctions} isValid = {element.isValid} message = {element.message}/>
           case 'button':
             return <Button key = {element.id}  name = {element.name} descprition = {element.descprition} fAction = {this.secondValidation} action = {element.action}  data = {this.state.user}/>
           case 'date':
@@ -386,16 +389,27 @@ class Form extends React.Component {
         }
       }
       else {
-        /* console.log(name)
-        defaultForm = defaultForm.map(elem => elem.isValid = 'valid')
         this.setState(
           {
             formElements: defaultForm
           }
         )
-        console.log(this.state.formElements[0].message); */
         this.myForm.reset()
-        console.log('reset')
+        this.resetFunctions()
+      }
+    }
+    resetFunctions(func) {
+      if(typeof func === 'undefined') {
+        this.state.resFuncs.forEach(func => func())
+      }
+      else{
+        let f = this.state.resFuncs
+        f.push(func)
+        this.setState(
+          {
+            resFuncs : f
+          }
+        )
       }
     }
    
