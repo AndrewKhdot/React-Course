@@ -5,6 +5,7 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex-wrap: wrap;
     width: 744px;
     height: 1620px;
     margin: auto;
@@ -33,8 +34,13 @@ form textarea {
     border-color: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     width: 581px;
-    height: 200px;
+    height: 170px;
     margin-bottom: 20px;
+    font-family: 'Mont';
+    font-size: 16px;
+    line-height: 100%;
+    padding-left: 21px;
+    padding-top: 16px;
     resize: none;
 }
 
@@ -54,6 +60,12 @@ textarea::placeholder {
     font-family: 'MontLight';
     font-size: 16px;
     line-height: 100%;
-    padding-left: 21px;
-    padding-top: 16px;
+}
+
+.valid {
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+.notValid {
+    border-color: red;
 }
