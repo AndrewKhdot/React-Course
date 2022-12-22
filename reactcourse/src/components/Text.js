@@ -3,13 +3,22 @@ import React, { useEffect, useState } from 'react';
 const Text = (props) => {
   let [state, setStates] = useState(['',''])
   let validation = inputValidation(props.name)
-  useEffect(() => {props.changeState(props.name, state[0])}, [state])
+  let [status, setStatus] = useState(['valid',''])
+  let statusAction = function componentActions(status) {
+    if(status === 'valid') {
+      setStatus(['valid', ''])
+    }
+    else {
+      setStatus(['notValid', 'Поле должно быть заполнено'])
+    }
+  }
+  useEffect(() => {props.changeState(props.name, state[0], statusAction)}, [state])
       return(
         <>
             <label htmlFor={'input' + props.name}>{props.descprition + ':'}</label>
-            <input className={props.isValid} placeholder={props.descprition} id={'input' + props.name} onBlur = {() => setStates([state[0], ''])} value = {state[0]}  onChange = {(e) =>validation(e.target.value, setStates)}></input>
+            <input className={status[0]} placeholder={props.descprition} id={'input' + props.name} onBlur = {() => setStates([state[0], ''])} value = {state[0]}  onChange = {(e) =>validation(e.target.value, setStates)}></input>
             <div>{state[1]}</div>
-            <div>{props.message}</div>
+            <div>{status[1]}</div>
         </>
       )
     function inputValidation(target) {
@@ -99,6 +108,7 @@ const Text = (props) => {
       func([value, '']);
     }
   }
+
 
   
 

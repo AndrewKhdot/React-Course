@@ -2,7 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 const TextArea = (props) => {
   let [state, setStates] = useState(['',''])
-  useEffect(() => {props.changeState(props.name, state[0])}, [state, props.isValid])
+  let [status, setStatus] = useState(['valid',''])
+  let statusAction = function (status) {
+    if(status === 'valid') {
+      setStatus(['valid', 'hi'])
+    }
+    else {
+      setStatus(['notValid', 'hi'])
+    }
+  }
+  useEffect(() => {props.changeState(props.name, state[0], statusAction)}, [state])
       return(
         <>
             <label htmlFor={'input' + props.name}>{props.descprition + ':'}</label>

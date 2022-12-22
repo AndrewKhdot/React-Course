@@ -15,7 +15,6 @@ const Form = (props) => {
         about : '',
         steck : '',
         lastProject : ''},
-
         formElements : [
           {
             id: 1,
@@ -97,17 +96,12 @@ const Form = (props) => {
             isValid: 'valid'
           }
         ],
-      
       userActions : {
-        
       }
     }
   )
-    
- /*    this.creatingElement = this.creatingElement.bind(this)
-    this.changeUser = this.changeUser.bind(this)
-    this.secondValidation = this.secondValidation.bind(this)
-    this.resetFunctions = this.resetFunctions.bind(this) */
+  let [validForm, setValid] = useState()
+  useEffect(() => changeStatus, [validForm])
 
       return(
         <form >
@@ -116,6 +110,15 @@ const Form = (props) => {
           <div className='buttons'>{state.formElements.filter(item => item.type === 'button').map(creatingElement)}</div>
         </form>
       )
+  
+  function changeStatus() {
+        for (const key in state.userActions) {
+          if (Object.hasOwnProperty.call(state.userActions, key)) {
+            let elem = state.formElements.find(item => item.name === key)
+            state.userActions[key](elem.isValid)
+          }
+        }          
+      }    
   function  creatingElement(element) {
         switch (element.type) {
           case 'input':
@@ -123,13 +126,13 @@ const Form = (props) => {
           case 'textArea':
             return <TextArea key = {element.id}  name = {element.name} descprition = {element.descprition} changeState = {changeUser} resFunc = {resetFunctions} isValid = {element.isValid} message = {element.message}/>
           case 'button':
-            return <Button key = {element.id}  name = {element.name} descprition = {element.descprition} fAction = {secondValidation} action = {element.action}  data = {state.user}/>
+            return <Button key = {element.id}  name = {element.name} descprition = {element.descprition} fAction = {secondValidation}  data = {state.user}/>
           case 'date':
             return <Date key = {element.id}  changeState = {changeUser} isValid = {element.isValid} message = {element.message}/>
             default:
               return <div></div>
         }
-        function  secondValidation(user, func, name) {
+        function  secondValidation(user, name) {
           const defaultForm = [
             {
               id: 1,
@@ -212,49 +215,49 @@ const Form = (props) => {
             }
           ]
           if(name === 'save'){
-            console.log(state)
-            state.formElements[0].isValid = 'notValid'
-            console.log(state.formElements[0])
-            state.formElements[0].message = 'hi'
-            /* let startForm = formElements;
-            for (const key in user) {
+            let startState = state;
+            for (const key in state.user) {
               if (Object.hasOwnProperty.call(user, key)) {
                 if(user[key] === '') {
-                  let index = startForm.indexOf(startForm.find(item => item.name === key))
-                  startForm[index].isValid = 'notValid';
-                  startForm[index].message = 'Поле должно быть заполнено';
-                  formElements = startForm
+                  let index = startState.formElements.indexOf(startState.formElements.find(item => item.name === key))
+                  startState.formElements[index].isValid = 'notValid';
+                  startState.formElements[index].message = 'Поле должно быть заполнено';
+                  setStates(startState)
                 }
                 else {
                   switch (key) {
                     case 'phone':
                       if(user[key].length < 14) {
-                        let index = startForm.indexOf(startForm.find(item => item.name === key))
-                        startForm[index].isValid = 'notValid';
-                        startForm[index].message = 'Номер телефона должен составлять 9 цифр'
-                        formElements = startForm
+                        let index = startState.formElements.indexOf(startState.formElements.find(item => item.name === key))
+                        startState.formElements[index].isValid = 'notValid';
+                        startState.formElements[index].message = 'Номер телефона должен составлять 9 цифр';
+                        setStates(startState)
                       }
                       else {
-                        let index = startForm.indexOf(startForm.find(item => item.name === key))
-                        startForm[index].isValid = 'valid';
-                        startForm[index].message = ''
-                        formElements = startForm
+                        let index = startState.formElements.indexOf(startState.formElements.find(item => item.name === key))
+                        startState.formElements[index].isValid = 'valid';
+                        startState.formElements[index].message = '';
+                        setStates(startState)
                       }
                       break;
                   
                     default:
-                      let index = startForm.indexOf(startForm.find(item => item.name === key))
-                      startForm[index].isValid = 'valid';
-                      startForm[index].message = ''
-                      formElements = startForm
+                      let index = startState.formElements.indexOf(startState.formElements.find(item => item.name === key))
+                      startState.formElements[index].isValid = 'valid';
+                      startState.formElements[index].message = '';
+                      setStates(startState)
                       break;
                   }
                 }
               }
             }
-            if(formElements.find(item => item.isValid === 'notValid') === undefined) {
-                func(user)
-            } */
+            if(state.formElements.find(item => item.isValid === 'notValid') === undefined) {
+                setValid(true)
+                props.submit(state.user)
+            }
+            else {
+              setValid(false)
+            }
           }
           else {
             state.formElements = defaultForm
@@ -264,8 +267,9 @@ const Form = (props) => {
         }
     }
 
-  function  changeUser (field, value) {
+  function  changeUser (field, value, action) {
       let lastState = state;
+      lastState.userActions[field] = action;
       lastState.user[field] = value;
       setStates(lastState) 
     }
