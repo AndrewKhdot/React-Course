@@ -261,8 +261,7 @@ const Form = (props) => {
           }
           else {
             state.formElements = defaultForm
-            this.myForm.reset()
-            this.resetFunctions()
+            resetFunctions()
           }
         }
     }

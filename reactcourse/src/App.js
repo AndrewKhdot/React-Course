@@ -21,7 +21,7 @@ class App extends React.Component {
       else {
         return(
           <div>
-            <CompletedForm user = {this.state.xoxo}/>
+            <CompletedForm user = {this.state.user}/>
           </div>
         )
       }
@@ -31,7 +31,7 @@ class App extends React.Component {
       this.setState(
         {
           isComplete : true,
-          xoxo: user
+          user: user
         }
       ) 
     }
@@ -43,7 +43,6 @@ class App extends React.Component {
         }
       )
       this.render();
-      console.log('hi from app')
     }
   }
   export default App

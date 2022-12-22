@@ -98,11 +98,14 @@ class CompletedForm extends React.Component {
           </div>
       )
     }
+
+    
     createResult(user) {
       let result = [];
       result.push(<TitelResult name = {user.name} surname = {user.surname} />)
       for (const key in user) {
         if (Object.hasOwnProperty.call(user, key)) {
+          console.log(key)
           if(key !== 'name' || key !== 'surname') {
             if(key === 'phone' || key === 'site') {
               result.push(<LinckResult type = {key} value = {user[key]} descprition = {this.state.formElements.find(item => item.name === key).descprition} />)
