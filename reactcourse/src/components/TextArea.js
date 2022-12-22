@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const TextArea = (props) => {
   let [state, setStates] = useState(['',''])
-  useEffect(() => {props.changeState(props.name, state[0])}, [state])
+  useEffect(() => {props.changeState(props.name, state[0])}, [state, props.isValid])
       return(
         <>
             <label htmlFor={'input' + props.name}>{props.descprition + ':'}</label>
