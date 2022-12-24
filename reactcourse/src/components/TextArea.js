@@ -1,58 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-class TextArea extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      message: '',
-      value: ''
+const TextArea = (props) => {
+  let [state, setStates] = useState(['',''])
+  let [status, setStatus] = useState(['valid',''])
+  let statusAction = function componentActions(status) {
+    if(status === 'valid') {
+      setStatus(['valid', ''])
     }
-    this.props.resFunc(this.resetValue.bind(this))
+    else if (status === 'notValid'){
+      setStatus(['notValid', 'Поле должно быть заполнено'])
+    }
+    else {
+      setStatus(['valid', ''])
+      setStates(['', ''])
+    }
   }
-    render() {
+  useEffect(() => {props.changeState(props.name, state[0], statusAction)}, [state])
       return(
         <>
-            <label htmlFor={'input' + this.props.name}>{this.props.descprition + ':'}</label>
-            <textarea className={this.props.isValid} placeholder={this.props.descprition} id={'input' + this.props.name} value = {this.state.value} onBlur = {(e) => {this.setState({message : ''}); this.props.changeState(this.props.name, e.target.value)}} onChange = {(e) => this.lengthCalc(e.target.value)}></textarea>
-            <div>{this.state.message}</div>
-            <div>{this.props.message}</div>
+            <label htmlFor={'input' + props.name}>{props.description + ':'}</label>
+            <textarea className={status[0]} placeholder={props.description} id={'input' + props.name} onBlur = {() => setStates([state[0], ''])} value = {state[0]}  onChange = {(e) => lengthCalc(e.target.value, setStates)}></textarea>
+            <div>{state[1]}</div>
+            <div>{status[1]}</div>
         </>
       )
-    }
+}
 
-    lengthCalc(val) {
+ function lengthCalc(val, func) {
+    let value = ''
       if (val.length === 0) {
-        this.setState(
-          this.state = {
-            message: '',
-            value : val
-          }
-        )
+        value = val;
+        func([value, '']);
       }
       else if(val.length === 600) {
-        this.setState(
-          this.state = {
-            message: 'Длинна должна быть не больше 600 символов',
-            value: val.slice(0, 599)
-          }
-        )
+        value = val.slice(0, 599)
+        func([value, 'Длинна должна быть не больше 600 символов']);
       }
       else {
-        this.setState(
-          this.state = {
-            message: `Символовл ${val.length} из 600`,
-            value: val
-          }
-        )
+        value = val
+        func([value, `Символовл ${val.length} из 600`])
       }
-    }
-    resetValue() {
-      this.setState(
-        {
-          value : ''
-        }
-      )
-    }
-  }
-
+}
+ 
   export default TextArea

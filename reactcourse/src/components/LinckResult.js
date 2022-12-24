@@ -1,23 +1,21 @@
 import React from 'react';
 
-class LinckResult extends React.Component {
-    render() {
+const LinckResult = (props) => {
       return(
-        this.choseLinck(this.props.type, this.props.value, this.props.descprition)
+        choseLinck(props.type, props.value, props.description)
       )
-    }
-    choseLinck(type, value, descprition) {
+ function   choseLinck(type, value, description) {
         if(type === 'phone') {
             return (
             <>
-                <h2>{descprition}</h2>
+                <h2>{description}</h2>
                 <a href={'tel:' + value}>{value}</a>
             </>)
         }
         else {
             return(
             <>
-                <h2>{descprition}</h2>
+                <h2>{description}</h2>
                 <a href={value}>{value}</a>
             </>)
         }

@@ -1,11 +1,9 @@
 import React from 'react';
 
-class TitelResult extends React.Component {
-    render() {
+const TitelResult = (props) => {
       return(
-          <h1>{this.props.name} {this.props.surname}</h1>
+          <h1>{props.name} {props.surname}</h1>
       )
-    }
   }
 
   export default TitelResult
