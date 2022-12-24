@@ -20,7 +20,7 @@ const Form = (props) => {
             id: 1,
             type: 'input',
             name: 'name',
-            descprition: 'Имя',
+            description: 'Имя',
             isValid: 'valid',
             message: ''
           },
@@ -28,7 +28,7 @@ const Form = (props) => {
             id: 2,
             type: 'input',
             name: 'surname',
-            descprition: 'Фамилия',
+            description: 'Фамилия',
             isValid: 'valid',
             message: ''
           },
@@ -43,7 +43,7 @@ const Form = (props) => {
             id: 4,
             type: 'input',
             name: 'phone',
-            descprition: 'Телефон',
+            description: 'Телефон',
             isValid: 'valid',
             message: ''
           },
@@ -51,7 +51,7 @@ const Form = (props) => {
             id: 5,
             type: 'input',
             name: 'site',
-            descprition: 'Сайт',
+            description: 'Сайт',
             isValid: 'valid',
             message: ''
           },
@@ -59,7 +59,7 @@ const Form = (props) => {
             id: 6,
             type: 'textArea',
             name: 'about',
-            descprition: 'О себе',
+            description: 'О себе',
             isValid: 'valid',
             message: ''
           },
@@ -67,7 +67,7 @@ const Form = (props) => {
             id: 7,
             type: 'textArea',
             name: 'steck',
-            descprition: 'Стек технологий',
+            description: 'Стек технологий',
             isValid: 'valid',
             message: ''
           },
@@ -75,7 +75,7 @@ const Form = (props) => {
             id: 8,
             type: 'textArea',
             name: 'lastProject',
-            descprition: 'Описание последнего проекта',
+            description: 'Описание последнего проекта',
             isValid: 'valid',
             message: ''
           },
@@ -83,7 +83,7 @@ const Form = (props) => {
             id: 9,
             type: 'button',
             name: 'cancel',
-            descprition: 'Отмена',
+            description: 'Отмена',
             action: props.cancel,
             isValid: 'valid'
           },
@@ -91,7 +91,7 @@ const Form = (props) => {
             id: 10,
             type: 'button',
             name: 'save',
-            descprition: 'Сохранить',
+            description: 'Сохранить',
             action: props.submit,
             isValid: 'valid'
           }
@@ -104,29 +104,40 @@ const Form = (props) => {
   useEffect(() => changeStatus, [validForm])
 
       return(
-        <form >
+        <form id='myForm'>
           <h2>Создание анкеты</h2>
           {state.formElements.filter(item => item.type !== 'button').map(creatingElement)}
           <div className='buttons'>{state.formElements.filter(item => item.type === 'button').map(creatingElement)}</div>
         </form>
       )
   
-  function changeStatus() {
-        for (const key in state.userActions) {
-          if (Object.hasOwnProperty.call(state.userActions, key)) {
-            let elem = state.formElements.find(item => item.name === key)
-            state.userActions[key](elem.isValid)
-          }
-        }          
-      }    
+  function changeStatus(val) {
+    if(val === undefined) {
+          for (const key in state.userActions) {
+            if (Object.hasOwnProperty.call(state.userActions, key)) {
+              let elem = state.formElements.find(item => item.name === key)
+              state.userActions[key](elem.isValid)
+            }
+          }  
+    }  
+    else {
+      console.log(val)
+      for (const key in state.userActions) {
+        if (Object.hasOwnProperty.call(state.userActions, key)) {
+          state.userActions[key]('reet')
+        }
+      }
+    }
+
+  }    
   function  creatingElement(element) {
         switch (element.type) {
           case 'input':
-            return <Text key = {element.id} name = {element.name} descprition = {element.descprition} resFunc = {resetFunctions} isValid = {element.isValid} changeState = {changeUser} message = {element.message}/>
+            return <Text key = {element.id} name = {element.name} description = {element.description} resFunc = {resetFunctions} isValid = {element.isValid} changeState = {changeUser} message = {element.message}/>
           case 'textArea':
-            return <TextArea key = {element.id}  name = {element.name} descprition = {element.descprition} changeState = {changeUser} resFunc = {resetFunctions} isValid = {element.isValid} message = {element.message}/>
+            return <TextArea key = {element.id}  name = {element.name} description = {element.description} changeState = {changeUser} resFunc = {resetFunctions} isValid = {element.isValid} message = {element.message}/>
           case 'button':
-            return <Button key = {element.id}  name = {element.name} descprition = {element.descprition} fAction = {secondValidation}  data = {state.user}/>
+            return <Button key = {element.id}  name = {element.name} description = {element.description} fAction = {secondValidation}  data = {state.user}/>
           case 'date':
             return <Date key = {element.id}  changeState = {changeUser} isValid = {element.isValid} message = {element.message}/>
             default:
@@ -138,7 +149,7 @@ const Form = (props) => {
               id: 1,
               type: 'input',
               name: 'name',
-              descprition: 'Имя',
+              description: 'Имя',
               isValid: 'valid',
               message: ''
             },
@@ -146,7 +157,7 @@ const Form = (props) => {
               id: 2,
               type: 'input',
               name: 'surname',
-              descprition: 'Фамилия',
+              description: 'Фамилия',
               isValid: 'valid',
               message: ''
             },
@@ -161,7 +172,7 @@ const Form = (props) => {
               id: 4,
               type: 'input',
               name: 'phone',
-              descprition: 'Телефон',
+              description: 'Телефон',
               isValid: 'valid',
               message: ''
             },
@@ -169,7 +180,7 @@ const Form = (props) => {
               id: 5,
               type: 'input',
               name: 'site',
-              descprition: 'Сайт',
+              description: 'Сайт',
               isValid: 'valid',
               message: ''
             },
@@ -177,7 +188,7 @@ const Form = (props) => {
               id: 6,
               type: 'textArea',
               name: 'about',
-              descprition: 'О себе',
+              description: 'О себе',
               isValid: 'valid',
               message: ''
             },
@@ -185,7 +196,7 @@ const Form = (props) => {
               id: 7,
               type: 'textArea',
               name: 'steck',
-              descprition: 'Стек технологий',
+              description: 'Стек технологий',
               isValid: 'valid',
               message: ''
             },
@@ -193,7 +204,7 @@ const Form = (props) => {
               id: 8,
               type: 'textArea',
               name: 'lastProject',
-              descprition: 'Описание последнего проекта',
+              description: 'Описание последнего проекта',
               isValid: 'valid',
               message: ''
             },
@@ -201,7 +212,7 @@ const Form = (props) => {
               id: 9,
               type: 'button',
               name: 'cancel',
-              descprition: 'Отмена',
+              description: 'Отмена',
               action: props.cancel,
               isValid: 'valid'
             },
@@ -209,13 +220,21 @@ const Form = (props) => {
               id: 10,
               type: 'button',
               name: 'save',
-              descprition: 'Сохранить',
+              description: 'Сохранить',
               action: props.submit,
               isValid: 'valid'
             }
           ]
+          const defaultUser = { name : '',
+          surname : '',
+          dateBirth : '',
+          phone : '',
+          site : '',
+          about : '',
+          steck : '',
+          lastProject : ''}
+          let startState = state;
           if(name === 'save'){
-            let startState = state;
             for (const key in state.user) {
               if (Object.hasOwnProperty.call(user, key)) {
                 if(user[key] === '') {
@@ -254,18 +273,21 @@ const Form = (props) => {
             if(state.formElements.find(item => item.isValid === 'notValid') === undefined) {
                 setValid(true)
                 props.submit(state.user)
+                setValid(validForm + 1)
             }
             else {
-              setValid(false)
+              setValid(validForm + 1)
             }
           }
           else {
-            state.formElements = defaultForm
-            resetFunctions()
+            startState.formElements = defaultForm
+            startState.user = defaultUser
+            setStates(startState)
+            changeStatus('reset')
+            setValid(validForm + 1)
           }
         }
     }
-
   function  changeUser (field, value, action) {
       let lastState = state;
       lastState.userActions[field] = action;

@@ -6,21 +6,29 @@ const Text = (props) => {
   let [status, setStatus] = useState(['valid',''])
   let statusAction = function componentActions(status) {
     if(status === 'valid') {
+      console.log('h2')
       setStatus(['valid', ''])
     }
-    else {
+    else if (status === 'notValid'){
+      console.log('h3')
       setStatus(['notValid', 'Поле должно быть заполнено'])
+    }
+    else {
+      console.log('h4')
+      setStatus(['valid', ''])
+      setStates(['', ''])
     }
   }
   useEffect(() => {props.changeState(props.name, state[0], statusAction)}, [state])
       return(
         <>
-            <label htmlFor={'input' + props.name}>{props.descprition + ':'}</label>
-            <input className={status[0]} placeholder={props.descprition} id={'input' + props.name} onBlur = {() => setStates([state[0], ''])} value = {state[0]}  onChange = {(e) =>validation(e.target.value, setStates)}></input>
+            <label htmlFor={'input' + props.name}>{props.description + ':'}</label>
+            <input className={status[0]} placeholder={props.description} id={'input' + props.name} onBlur = {() => setStates([state[0], ''])} value = {state[0]}  onChange = {(e) =>validation(e.target.value, setStates)}></input>
             <div>{state[1]}</div>
             <div>{status[1]}</div>
         </>
       )
+  
     function inputValidation(target) {
     let funcVal;
     switch (target) {

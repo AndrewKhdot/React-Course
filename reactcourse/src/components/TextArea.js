@@ -3,21 +3,25 @@ import React, { useEffect, useState } from 'react';
 const TextArea = (props) => {
   let [state, setStates] = useState(['',''])
   let [status, setStatus] = useState(['valid',''])
-  let statusAction = function (status) {
+  let statusAction = function componentActions(status) {
     if(status === 'valid') {
-      setStatus(['valid', 'hi'])
+      setStatus(['valid', ''])
+    }
+    else if (status === 'notValid'){
+      setStatus(['notValid', 'Поле должно быть заполнено'])
     }
     else {
-      setStatus(['notValid', 'hi'])
+      setStatus(['valid', ''])
+      setStates(['', ''])
     }
   }
   useEffect(() => {props.changeState(props.name, state[0], statusAction)}, [state])
       return(
         <>
-            <label htmlFor={'input' + props.name}>{props.descprition + ':'}</label>
-            <textarea className={props.isValid} placeholder={props.descprition} id={'input' + props.name} onBlur = {() => setStates([state[0], ''])} value = {state[0]}  onChange = {(e) => lengthCalc(e.target.value, setStates)}></textarea>
+            <label htmlFor={'input' + props.name}>{props.description + ':'}</label>
+            <textarea className={status[0]} placeholder={props.description} id={'input' + props.name} onBlur = {() => setStates([state[0], ''])} value = {state[0]}  onChange = {(e) => lengthCalc(e.target.value, setStates)}></textarea>
             <div>{state[1]}</div>
-            <div>{props.message}</div>
+            <div>{status[1]}</div>
         </>
       )
 }
