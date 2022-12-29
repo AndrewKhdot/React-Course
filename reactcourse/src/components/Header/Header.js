@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Form from '../Form/Form'
 
 
-function EnterForm ()  {
+const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const users = useSelector(state => state.users.usersMessages);
@@ -14,14 +14,16 @@ function EnterForm ()  {
   if (user === null) {
     message = 'Введите имя'
     return(
-      <div>
-          <h1>Enter {message}</h1>
-          <Form action = {changeUser}></Form>
-      </div>
+      <header className="App-header">
+        <Form action = {changeUser}></Form>
+      </header>
     )
   }
   else {
-   navigate("/active");
+    <header className="App-header">
+        {user.name}
+        <button onClick={() => changeUser()}>Выход</button>
+      </header>
   }
       
 
@@ -41,4 +43,4 @@ function EnterForm ()  {
     }
 }
 
-  export default EnterForm
+  export default Header
