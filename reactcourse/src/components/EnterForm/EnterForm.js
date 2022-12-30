@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +11,9 @@ function EnterForm ()  {
   const users = useSelector(state => state.users.usersMessages);
   let user = useSelector(state => state.user.activeUser);
   let message;
+  useEffect(() => {if(user !== null) {
+    navigate("/active")
+  }}, [user] )
   if (user === null) {
     message = 'Введите имя'
     return(
@@ -20,10 +23,6 @@ function EnterForm ()  {
       </div>
     )
   }
-  else {
-   navigate("/active");
-  }
-      
 
     function changeUser (name) {
       const user = users.find(item => item.name === name)

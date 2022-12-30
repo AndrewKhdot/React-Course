@@ -1,21 +1,28 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Form from '../Form/Form'
-import Header from '../Header/Header';
+import Task from '../Task/Task'
 
 
-const ActiveTasks = () => {
+const ActiveTasks = (props) => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.activeUser);
+  let tasks = renderTasks(user.tasks);
       return(
         <div>
-            <Header />
-            <h1>Active {user.name}s tasks</h1>
+            <h1>Active {props.number} {user.name}s tasks</h1>
             <Form action = {addTask}></Form>
-            {user.tasks.map(item => <div key = {item.id}>{item.task} </div>)}
+            { tasks }
         </div>
       )
+  
+  function renderTasks(tasks) {
+    return (
+      tasks.map(item => <Task key = {item.id} task = {item.task}/>)
+    )
+  }
+
   function addTask(task) {
     const newTask = {
      isActive: true,
@@ -23,7 +30,8 @@ const ActiveTasks = () => {
      id: new Date() 
     }
     user.tasks.push(newTask)
-    dispatch({type: 'UDATE_ACTIVEUSER', payLoad: user})
+    dispatch({type: 'UPDATE_ACTIVEUSER', payLoad: user})
+
   }
 
 }
