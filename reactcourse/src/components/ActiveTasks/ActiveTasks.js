@@ -10,11 +10,11 @@ const ActiveTasks = (props) => {
   const user = useSelector(state => state.user.activeUser);
   let tasks = renderTasks(user.tasks);
       return(
-        <div>
+        <>
             <h1>Active {props.number} {user.name}s tasks</h1>
             <Form action = {addTask}></Form>
             { tasks }
-        </div>
+        </>
       )
   
   function renderTasks(tasks) {
