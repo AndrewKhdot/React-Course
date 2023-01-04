@@ -9,15 +9,8 @@ const ActiveTasks = (props) => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.activeUser);
   let tasks = renderTasks(user.tasks);
-      return(
-        <>
-            <h1>Active {props.number} {user.name}s tasks</h1>
-            <Form action = {addTask}></Form>
-            { tasks }
-        </>
-      )
   
-  function renderTasks(tasks) {
+    function renderTasks(tasks) {
     return (
       tasks.map(item => <Task key = {item.id} task = {item.task}/>)
     )
@@ -31,9 +24,14 @@ const ActiveTasks = (props) => {
     }
     user.tasks.push(newTask)
     dispatch({type: 'UPDATE_ACTIVEUSER', payLoad: user})
-
   }
-
+      return(
+        <>
+            <h1>Active {props.number} {user.name}s tasks</h1>
+            <Form action = {addTask}></Form>
+            { tasks }
+        </>
+      )
 }
 
     
