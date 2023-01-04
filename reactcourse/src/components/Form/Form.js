@@ -10,18 +10,6 @@ const Form = (props) => {
                 <input type="button" onClick={() => {props.action(state); setState('')}} value="Сохранить" />
            </form>
       )
-    
-
-  /*     return(
-        <form onSubmit={handleSubmit}>
-             <input type= 'text' ></input>
-             <button type='submit'>Сохранить</button>
-        </form>
-      ) 
-      function handleSubmit(event) {
-        event.preventDefault();
-        props.action(event.target.value)
-      } */
     }
 
   export default Form
